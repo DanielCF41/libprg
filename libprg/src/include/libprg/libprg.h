@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <limits.h>
+#include <stdbool.h>
 
 /**
  * @param elemento = elemento que o usuário deseja remover ou incluir no vetor
