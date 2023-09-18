@@ -1,5 +1,5 @@
 #include <libprg/libprg.h>
-
+//------------- CRIA -------------
 int cria(vetor_t *vetor, int tamanho){
     vetor->vetor = (int*) calloc(tamanho, sizeof (int));
     if(vetor->vetor == NULL){
@@ -8,43 +8,54 @@ int cria(vetor_t *vetor, int tamanho){
     return 0;
 }
 
+//------------- NÃO ORDENADA -------------
 void nao_ordenada(vetor_t *vetor, int tamanho){
-    srand((unsigned) time(NULL));
-
-    for(int i = 0; i < vetor->total_elementos; i++){
-        vetor->vetor[i] = (rand() % INT_MAX) + 1;
-    }
-}
-void ordenada(vetor_t *vetor, int tamanho){
     int num;
     srand((unsigned) time(NULL));
-    vetor->vetor = (int*) calloc(tamanho, sizeof (int));
 
-    for(int i = 0; i < vetor->total_elementos; i++){
-        do {
-            num = (rand() % INT_MAX) + 1;
-        }while (num <= vetor->vetor[i]);
-        vetor->vetor[i] = num;
+    for(int i = 0; i < vetor->tamanho; i++){
+        num = (rand() % 100) + 1;
+        if(buscar_l(vetor, num) == -1){
+            vetor->vetor[i] = num;
+        }
     }
 }
 
+//------------- ORDENADA -------------
+void ordenada(vetor_t *vetor, int tamanho){
+    int num;
+
+    srand((unsigned) time(NULL));
+    cria(vetor, tamanho);
+
+    for(int i = 0; i < vetor->total_elementos; i++){
+        num = (rand() % 100) + 1;
+        if(num > vetor->vetor[i - 1] && buscar_bi(vetor, num) == -1){
+            vetor->vetor[i] = num;
+        }
+    }
+}
+
+//------------- POVOAR -------------
 int povoar(vetor_t * vetor, char op){
-    if(op == 'O' || op == 'o'){
+    if(op == 1){
         ordenada(vetor, vetor->tamanho);
-    }else{
+    }else if(op == 2){
         nao_ordenada(vetor, vetor->tamanho);
     }
 }
 
-
+//------------- BUSCA LINEAR -------------
 int buscar_l(vetor_t *vetor, int elemento){
     for(int i = 0; i < vetor->total_elementos; i++){
         if(vetor->vetor[i] == elemento){
             return i;
         }
     }
+    return -1;
 }
 
+//------------- BUSCA BINÁRIA -------------
 int buscar_bi(vetor_t *vetor, int elemento){
     int meio;
     int inicio = 0;
@@ -62,6 +73,7 @@ int buscar_bi(vetor_t *vetor, int elemento){
     return -1;
 }
 
+//------------- BUSCA BINÁRIA RECURSIVA -------------
 int buscar_br(vetor_t *vetor, int inicio, int fim, int elemento){
     int meio;
     for(int i = 0; i < vetor->total_elementos; i++){
@@ -77,12 +89,14 @@ int buscar_br(vetor_t *vetor, int inicio, int fim, int elemento){
     return -1;
 }
 
+//------------- INSERIR NÃO ORDENADA -------------
 void inserir_n(vetor_t *vetor, int elemento){
     if(vetor->total_elementos < vetor->tamanho) {
         vetor->vetor[vetor->total_elementos++] = elemento;
     }
 }
 
+//------------- INSERIR ORDENADA -------------
 void inserir_o(vetor_t *vetor, int elemento){
     for(int i = 0; i < vetor->total_elementos; i++){
         if(vetor->vetor[i] > elemento){
@@ -95,6 +109,7 @@ void inserir_o(vetor_t *vetor, int elemento){
     }
 }
 
+//------------- REMOVER -------------
 int remover(vetor_t *vetor, int elemento){
     for(int i = 0; i < vetor->total_elementos; i++){
         if(vetor->vetor[i] == elemento){
@@ -103,6 +118,7 @@ int remover(vetor_t *vetor, int elemento){
     }
 }
 
+//------------- REMOVER ORDENADA -------------
 int remover_o(vetor_t *vetor, int elemento){
     for(int i = 0; i < vetor->total_elementos; i++){
         if(vetor->vetor[i] == elemento){
