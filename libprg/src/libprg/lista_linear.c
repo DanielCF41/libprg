@@ -2,6 +2,7 @@
 //------------- CRIA -------------
 int cria(vetor_t *vetor, int tamanho){
     vetor->vetor = (int*) calloc(tamanho, sizeof (int));
+
     if(vetor->vetor == NULL){
         return -1;
     }
@@ -28,7 +29,7 @@ void ordenada(vetor_t *vetor, int tamanho){
     srand((unsigned) time(NULL));
     cria(vetor, tamanho);
 
-    for(int i = 0; i < vetor->total_elementos; i++){
+    for(int i = 0; i < vetor->tamanho; i++){
         num = (rand() % 100) + 1;
         if(num > vetor->vetor[i - 1] && buscar_bi(vetor, num) == -1){
             vetor->vetor[i] = num;
@@ -90,31 +91,41 @@ int buscar_br(vetor_t *vetor, int inicio, int fim, int elemento){
 }
 
 //------------- INSERIR NÃO ORDENADA -------------
-void inserir_n(vetor_t *vetor, int elemento){
+int inserir_n(vetor_t *vetor, int elemento){
     if(vetor->total_elementos < vetor->tamanho) {
         vetor->vetor[vetor->total_elementos++] = elemento;
+        return 0;
     }
+    return -1;
 }
 
 //------------- INSERIR ORDENADA -------------
-void inserir_o(vetor_t *vetor, int elemento){
-    for(int i = 0; i < vetor->total_elementos; i++){
-        if(vetor->vetor[i] > elemento){
-            for(int j = vetor->total_elementos++; j > i; j--){
-                vetor->vetor[j] = vetor->vetor[j - 1];
+int inserir_o(vetor_t *vetor, int elemento){
+    if(vetor->total_elementos < vetor->tamanho) {
+        for (int i = 0; i < vetor->total_elementos; i++) {
+            if (vetor->vetor[i] > elemento) {
+                for (int j = vetor->total_elementos++; j > i; j--) {
+                    vetor->vetor[j] = vetor->vetor[j - 1];
+                }
+                vetor->vetor[i] = elemento;
+
             }
-            vetor->vetor[i] = elemento;
-            break;
         }
+        return 0;
     }
+    return -1;
 }
 
 //------------- REMOVER -------------
 int remover(vetor_t *vetor, int elemento){
     for(int i = 0; i < vetor->total_elementos; i++){
         if(vetor->vetor[i] == elemento){
-            vetor->vetor[i] = vetor->vetor[vetor->total_elementos--];
+            vetor->vetor[i] = vetor->vetor[vetor->total_elementos];
+            vetor->total_elementos--;
         }
+
+
+
     }
 }
 

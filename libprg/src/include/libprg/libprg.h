@@ -30,8 +30,8 @@ int buscar_l(vetor_t *vetor, int elemento); // BUSCA LINEAR
 int buscar_bi(vetor_t *vetor, int elemento); // BUSCA BINÁRIA ITERATIVA
 int buscar_br(vetor_t *vetor, int inicio, int fim, int elemento); // BUSCA BINÁRIA RECURSIVA
 
-void inserir_n(vetor_t *vetor, int elemento); // INSERÇÃO NÃO ORDENADA
-void inserir_o(vetor_t *vetor, int elemento); // INSERÇÃO ORDENADA
+int inserir_n(vetor_t *vetor, int elemento); // INSERÇÃO NÃO ORDENADA
+int inserir_o(vetor_t *vetor, int elemento); // INSERÇÃO ORDENADA
 
 int remover(vetor_t *vetor, int elemento); // REMOVE NÃO ORDENADA
 int remover_o(vetor_t *vetor, int elemento); // REMOVE ORDENADA
