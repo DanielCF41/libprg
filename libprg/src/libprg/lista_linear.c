@@ -127,9 +127,6 @@ int remover(vetor_t *vetor, int elemento){
             vetor->vetor[i] = vetor->vetor[vetor->total_elementos];
             vetor->total_elementos--;
         }
-
-
-
     }
 }
 

@@ -17,7 +17,7 @@ int dequeue(fila_t *fila) {
     };
     fila->fila->total_elementos--;
     fila->inicio = (fila->inicio + 1) % fila->fila->tamanho;
-    return 0;
+    return fila->fila->vetor[fila->fim];
 }
 
 int head (fila_t *fila){

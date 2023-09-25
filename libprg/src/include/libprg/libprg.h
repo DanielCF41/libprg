@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <limits.h>
-#include <stdbool.h>
+#include <sys/time.h>
 
 /**
  * @param elemento = elemento que o usuário deseja remover ou incluir no vetor
@@ -37,8 +37,6 @@ int inserir_o(vetor_t *vetor, int elemento); // INSERÇÃO ORDENADA
 int remover(vetor_t *vetor, int elemento); // REMOVE NÃO ORDENADA
 int remover_o(vetor_t *vetor, int elemento); // REMOVE ORDENADA
 
-void libera(vetor_t *vetor); // LIBERA ESPAÇO
-
 // ------------------------- FILA ------------------------- //
 
 typedef struct {
@@ -57,5 +55,11 @@ int size (fila_t *fila); // RETORNA O TOTAL DE ELEMENTOS NA FILA
 
 int empty (fila_t *fila); // INDICA SE A FILA ESTÁ VAZIA OU NÃO
 int full (fila_t *fila); // INDICA SE A FILA ESTÁ CHEIA OU NÃO
+
+// ------------------------- TOMADA DE TEMPO ------------------------- //
+struct timeval inicio, fim;
+
+void incio_tempo();
+int fim_tempo();
 
 #endif //TEMP_LIBPRG_H
