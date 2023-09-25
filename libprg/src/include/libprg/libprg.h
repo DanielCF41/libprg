@@ -21,6 +21,7 @@ typedef struct {
 }vetor_t;
 
 int cria(vetor_t *vetor, int tamanho); // CRIA VETOR
+void libera(vetor_t *vetor); // LIBERA MEMÓRIA
 int povoar(vetor_t * vetor, char op); // POVOA VETOR
 
 void nao_ordenada(vetor_t *vetor, int tamanho); // POVOA VETOR NÃO ORDENADO

@@ -7,6 +7,7 @@ set(HEADERS
 # Add source files here manually
 set(SOURCES
         "${CMAKE_CURRENT_LIST_DIR}/src/libprg/lista_linear.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/libprg/fila.c"
 )
 
 add_library(libprg
@@ -26,4 +27,4 @@ source_group(
 
 # https://cmake.org/cmake/help/latest/command/install.html
 install(TARGETS libprg DESTINATION lib)
-install(FILES ${HEADER_LIST} DESTINATION include)
+install(FILES ${HEADERS} DESTINATION include)

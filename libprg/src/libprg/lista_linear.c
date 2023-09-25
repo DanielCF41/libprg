@@ -25,13 +25,17 @@ void nao_ordenada(vetor_t *vetor, int tamanho){
 //------------- ORDENADA -------------
 void ordenada(vetor_t *vetor, int tamanho){
     int num;
+    int j = 0;
 
     srand((unsigned) time(NULL));
     cria(vetor, tamanho);
 
     for(int i = 0; i < vetor->tamanho; i++){
+        inicio_do_loop:
         num = (rand() % 100) + 1;
-        if(num > vetor->vetor[i - 1] && buscar_bi(vetor, num) == -1){
+        if(vetor->vetor[i - 1] > num){
+            goto inicio_do_loop;
+        }else if(buscar_l(vetor, num) == -1){
             vetor->vetor[i] = num;
         }
     }
@@ -138,4 +142,8 @@ int remover_o(vetor_t *vetor, int elemento){
             }
         }
     }
+}
+
+void libera(vetor_t *vetor){
+    free(vetor->vetor);
 }
