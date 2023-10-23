@@ -5,6 +5,7 @@
 #include <time.h>
 #include <limits.h>
 #include <sys/time.h>
+#include <stdbool.h>
 
 /**
  * @param elemento = elemento que o usuário deseja remover ou incluir no vetor
@@ -18,11 +19,11 @@ typedef struct {
     int *vetor;
     int tamanho;
     int total_elementos;
-}vetor_t;
+} vetor_t;
 
 int cria(vetor_t *vetor, int tamanho); // CRIA VETOR
 void libera(vetor_t *vetor); // LIBERA MEMÓRIA
-int povoar(vetor_t * vetor, char op); // POVOA VETOR
+int povoar(vetor_t *vetor, char op); // POVOA VETOR
 
 void nao_ordenada(vetor_t *vetor, int tamanho); // POVOA VETOR NÃO ORDENADO
 void ordenada(vetor_t *vetor, int tamanho); // POVOA VETOR ORDENADO
@@ -43,23 +44,78 @@ typedef struct {
     vetor_t *fila;
     int inicio;
     int fim;
-}fila_t;
+} fila_t;
 
-int enqueue (fila_t *fila, int elemento); // ADICIONA UM ELEMENTO NO FINAL DA FILA
-int dequeue (fila_t *fila); // REMOVE O ELEMENTO QUE ESTÁ NO INÍCIO DA FILA
+int enqueue(fila_t *fila, int elemento); // ADICIONA UM ELEMENTO NO FINAL DA FILA
+int dequeue(fila_t *fila); // REMOVE O ELEMENTO QUE ESTÁ NO INÍCIO DA FILA
 
-int head (fila_t *fila); // RETORNA O ELEMENTO QUE ESTÁ NO INÍCIO DA FILA
-int tail (fila_t *fila); // RETORNA O ELEMENTO QUE ESTÁ NO FIM DA FILA
+int head(fila_t *fila); // RETORNA O ELEMENTO QUE ESTÁ NO INÍCIO DA FILA
+int tail(fila_t *fila); // RETORNA O ELEMENTO QUE ESTÁ NO FIM DA FILA
 
-int size (fila_t *fila); // RETORNA O TOTAL DE ELEMENTOS NA FILA
+int size(fila_t *fila); // RETORNA O TOTAL DE ELEMENTOS NA FILA
 
-int empty (fila_t *fila); // INDICA SE A FILA ESTÁ VAZIA OU NÃO
-int full (fila_t *fila); // INDICA SE A FILA ESTÁ CHEIA OU NÃO
+int empty(fila_t *fila); // INDICA SE A FILA ESTÁ VAZIA OU NÃO
+int full(fila_t *fila); // INDICA SE A FILA ESTÁ CHEIA OU NÃO
 
-// ------------------------- TOMADA DE TEMPO ------------------------- //
-struct timeval inicio, fim;
+// ------------------- TOMADA DE TEMPO ------------------- //
+//struct timeval inicio_t, fim_t;
+//
+//double tempo();
 
-void incio_tempo();
-int fim_tempo();
+// ------------------------ PILHA ------------------------ //
+
+typedef struct{
+    vetor_t *pilha;
+    int topo;
+}pilha_t;
+
+int cria_pilha(pilha_t *pilha, int tamanho);
+int push(pilha_t *pilha, int elemento, int tamanho);
+int pop(pilha_t *pilha);
+int size_p(pilha_t pilha);
+int empty_p(pilha_t *pilha);
+
+// --------- LISTA ENCADEADA ----------- //
+
+typedef struct no {
+    int conteudo;
+    struct no *proximo;
+}no_t;
+
+bool create (int dado);
+
+no_t add(no_t *no, int dado);
+no_t add_o(no_t *no, int dado);
+
+bool remove_e(no_t *no, int dado);
+bool remove_eo(no_t *no, int dado);
+
+int search(no_t *no, int dado);
+int search_o(no_t *no, int dado);
+
+//========== LISTA DUPLAMENTE ENCADEADA ==========//
+
+typedef struct nod {
+    int conteudo;
+    struct nod *proximo;
+    struct nod *anterior;
+}nod_t;
+
+bool create_d(int dado);
+
+nod_t add_d(nod_t *nod, int dado);
+nod_t add_do(nod_t *nod, int dado);
+
+//========== ALGORITMO DE ORDENAÇÃO ==========//
+typedef struct{
+    int *array;
+    int n;
+} sort_t;
+
+bool bubble_sort_c(sort_t *sort); // MÉTODO BOLHA CRESCENTE
+bool bubble_sort_d(sort_t *sort); // MÉTODO BOLHA DECRESCENTE
+bool insertion_sort(sort_t *sort); // MÉTODO INSERÇÃO
+bool selection_sort_c(sort_t *sort); // MÉTODO SELEÇÃO CRESCENTE
+bool selection_sort_d(sort_t *sort); // MÉTODO SELEÇÃO DESCRESCENTE
 
 #endif //TEMP_LIBPRG_H

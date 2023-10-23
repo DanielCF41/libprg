@@ -2,6 +2,7 @@
 //------------- CRIA -------------
 int cria(vetor_t *vetor, int tamanho){
     vetor->vetor = (int*) calloc(tamanho, sizeof (int));
+    vetor->tamanho = tamanho;
 
     if(vetor->vetor == NULL){
         return -1;

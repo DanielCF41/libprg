@@ -1,15 +1,9 @@
-#include <libprg/libprg.h>
-
-void incio_tempo(){
-    gettimeofday(&inicio, 0);
-}
-
-int fim_tempo(){
-    gettimeofday(&fim, 0);
-
-    long seg = fim.tv_sec - inicio.tv_sec;
-    long mseg = fim.tv_usec - inicio.tv_usec;
-    double tempo_total = seg + mseg * 1e-6;
-
-    return tempo_total;
-}
+//#include <libprg/libprg.h>
+//
+//double tempo (){
+//    long seg, mseg;
+//    double tempo_total;
+//    seg = fim_t.tv_sec - inicio_t.tv_sec;
+//    mseg = fim_t.tv_usec - inicio_t.tv_usec;
+//    return tempo_total = seg + mseg * 1e-6;
+//}
