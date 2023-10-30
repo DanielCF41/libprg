@@ -58,9 +58,13 @@ int empty(fila_t *fila); // INDICA SE A FILA ESTÁ VAZIA OU NÃO
 int full(fila_t *fila); // INDICA SE A FILA ESTÁ CHEIA OU NÃO
 
 // ------------------- TOMADA DE TEMPO ------------------- //
-//struct timeval inicio_t, fim_t;
-//
-//double tempo();
+
+
+void inicio(struct timeval *inicio_t);
+double finaliza(struct timeval *inicio_t);
+
+double finaliza_cpu(clock_t start);
+
 
 // ------------------------ PILHA ------------------------ //
 
@@ -111,11 +115,17 @@ typedef struct{
     int *array;
     int n;
 } sort_t;
+bool troca_posicao(sort_t *sort, int i, int j);
+bool create_S(sort_t *sort, int n);
+void povoar_S(sort_t *sort, int n);
 
-bool bubble_sort_c(sort_t *sort); // MÉTODO BOLHA CRESCENTE
-bool bubble_sort_d(sort_t *sort); // MÉTODO BOLHA DECRESCENTE
-bool insertion_sort(sort_t *sort); // MÉTODO INSERÇÃO
-bool selection_sort_c(sort_t *sort); // MÉTODO SELEÇÃO CRESCENTE
-bool selection_sort_d(sort_t *sort); // MÉTODO SELEÇÃO DESCRESCENTE
+void bubble_sort(sort_t *sort, bool crescente); // MÉTODO BOLHA
+void insertion_sort(sort_t *sort); // MÉTODO INSERÇÃO
+void selection_sort(sort_t *sort, bool crescente); // MÉTODO SELEÇÃO
+
+int particiona(sort_t *sort, int start, int end);
+void merge(sort_t *sort, int mid, int left, int right);
+void merge_sort(sort_t *sort, int left, int right);
+void quick_sort(sort_t *sort, int start, int end);
 
 #endif //TEMP_LIBPRG_H

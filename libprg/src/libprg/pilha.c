@@ -1,13 +1,21 @@
 #include <libprg/libprg.h>
 
-int push(pilha_t *pilha, int elemento, int tamanho){
+int cria_pilha(pilha_t *pilha, int tamanho){
+    pilha = malloc(tamanho * sizeof(int));
+    if(pilha == NULL){
+        return -1;
+    }
+    return 0;
+}
 
+int push(pilha_t *pilha, int elemento, int tamanho){
     if(tamanho == pilha->pilha->total_elementos){
         return -1;
     }
     pilha->pilha->total_elementos++;
     pilha->topo++;
     pilha->pilha->vetor[pilha->topo] = elemento;
+    return 0;
 }
 
 int pop(pilha_t *pilha){
