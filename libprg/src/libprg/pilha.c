@@ -2,6 +2,7 @@
 
 int cria_pilha(pilha_t *pilha, int tamanho){
     pilha = malloc(tamanho * sizeof(int));
+    pilha->pilha->vetor = (int *) malloc(tamanho * sizeof(int));
     if(pilha == NULL){
         return -1;
     }

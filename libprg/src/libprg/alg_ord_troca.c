@@ -81,7 +81,7 @@ int particiona(sort_t *sort, int start, int end){
     return i;
 }
 void merge(sort_t *sort, int mid, int left, int right){
-    int *aux = (int *) malloc(sizeof(right - left + 1));
+    int *aux = (int *) malloc((right - left + 1) * sizeof(int));
     int i = left;
     int j = mid + 1;
     int k = 0;
@@ -106,6 +106,7 @@ void merge(sort_t *sort, int mid, int left, int right){
     for(i = left; i < right; i++){
         sort->array[i] = aux[i - left];
     }
+    free(aux);
 }
 
 

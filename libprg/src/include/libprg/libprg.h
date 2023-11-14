@@ -94,7 +94,7 @@ no_t add_o(no_t *no, int dado);
 bool remove_e(no_t *no, int dado);
 bool remove_eo(no_t *no, int dado);
 
-int search(no_t *no, int dado);
+bool search(no_t *no, int dado);
 int search_o(no_t *no, int dado);
 
 //========== LISTA DUPLAMENTE ENCADEADA ==========//
@@ -108,7 +108,7 @@ typedef struct nod {
 bool create_d(int dado);
 
 nod_t add_d(nod_t *nod, int dado);
-nod_t add_do(nod_t *nod, int dado);
+nod_t * add_do(nod_t *nod, int dado);
 
 //========== ALGORITMO DE ORDENAÇÃO ==========//
 typedef struct{

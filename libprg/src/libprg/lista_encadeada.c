@@ -28,26 +28,34 @@ no_t add_o(no_t *no, int dado){
 }
 
 bool remove_e(no_t *no, int dado){
-    no_t *lixo;
-    lixo->proximo = no->proximo;
-    no->proximo = lixo;
-    free(lixo);
+    no_t *lixo = malloc(sizeof(lixo));
+   if(search(no, dado) == dado) {
+        lixo->proximo = no->proximo;
+        no->proximo = lixo;
+        free(lixo);
+  }
+    return true;
 }
 
 bool remove_eo(no_t *no, int dado){
-    no_t *lixo;
+    no_t *lixo = malloc(sizeof(lixo));
     lixo->proximo = no->proximo;
     no->proximo = lixo;
     free(lixo);
 }
 
-int search(no_t *no, int dado){
-    while (no->proximo != NULL){
+bool search(no_t *no, int dado){
+    no_t *novo = malloc(sizeof(novo));
+    do{
+        novo->proximo = no;
+        no->proximo = novo;
         if(no->conteudo == dado){
-            return dado;
+            free(novo);
+            return true;
         }
-    }
-    return -1;
+    }while(novo->proximo != NULL);
+    free(novo);
+    return false;
 }
 
 int search_o(no_t *no, int dado){
@@ -58,6 +66,9 @@ int search_o(no_t *no, int dado){
 
 bool create_d(int dado){
     nod_t *inicio = malloc(sizeof (inicio));
+    if(inicio == NULL){
+        return false;
+    }
     inicio->conteudo = dado;
     inicio->proximo = NULL;
     inicio->anterior = NULL;
@@ -72,14 +83,19 @@ nod_t add_d(nod_t *nod, int dado){
     nod->proximo = novo;
 }
 
-nod_t add_do(nod_t *nod, int dado){
+nod_t * add_do(nod_t *nod, int dado){
     nod_t *novo = malloc(sizeof (novo));
-    while (novo->proximo != NULL){
-        if(nod->conteudo > dado){
-            novo->conteudo = dado;
-            nod->anterior = novo->proximo;
-            novo->proximo = nod->proximo;
-            nod->proximo = novo;
+    novo->conteudo = dado;
+    while (nod->proximo != NULL){
+        if(dado < nod->conteudo){
+            novo->proximo = nod;
+            novo->anterior = nod->anterior;
+            nod->anterior = novo;
+        }else{
+            novo->proximo = nod;
         }
     }
+    return nod;
 }
+
+
