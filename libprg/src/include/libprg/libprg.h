@@ -1,6 +1,7 @@
 #ifndef TEMP_LIBPRG_H
 #define TEMP_LIBPRG_H
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <limits.h>
@@ -127,5 +128,23 @@ int particiona(sort_t *sort, int start, int end);
 void merge(sort_t *sort, int mid, int left, int right);
 void merge_sort(sort_t *sort, int left, int right);
 void quick_sort(sort_t *sort, int start, int end);
+
+// ========== BINARY TREE =========== //
+
+typedef struct node {
+    int value;
+    struct node *left;
+    struct node * right;
+} node_t;
+
+node_t * create_node (int value);
+void destroy (node_t *node);
+node_t * insert_node (node_t *root, int value);
+node_t *  search_tree (node_t * root, int value, int * level);
+int maxValue(node_t * root);
+int minValue(node_t * root);
+void printTree(node_t *root);
+node_t * printTreeSoons(node_t * root, int value, int level);
+node_t * removeNumber (node_t *root, int value);
 
 #endif //TEMP_LIBPRG_H
